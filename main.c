@@ -8,23 +8,20 @@
 #define MAX_ARGS 10
 
 int main() {
-    char* line = NULL;
-    size_t line_length = 0;
+    char line[MAX_LINE_LENGTH];
     char* args[MAX_ARGS];
     int status;
 
     while (1) {
         printf("$ ");
-        ssize_t read = getline(&line, &line_length, stdin);
-        if (read == -1) {
+        if (fgets(line, MAX_LINE_LENGTH, stdin) == NULL) {
             if (feof(stdin)) {
+                // Ctrl+D was pressed, exit the shell
                 printf("[Disconnected...]\n");
-                free(line);
                 exit(0);
             }
             else {
-                perror("getline failed");
-                free(line);
+                perror("fgets failed");
                 exit(1);
             }
         }
@@ -44,23 +41,25 @@ int main() {
             continue;
         }
         else if (strcmp(args[0], "exit") == 0) {
-            printf("[Disconnected...]\n");
-            free(line);
-            exit(0);
+            	 printf("[Disconnected...]\n");
+		exit(0);
         }
 
         // create a child process and execute the command
         pid_t pid = fork();
         if (pid < 0) {
             perror("fork failed");
-            free(line);
             exit(1);
         }
         else if (pid == 0) {
             // child process
-            execvp(args[0], args);
-            perror("execvp failed");
-            free(line);
+            char* path = "/bin/";
+            size_t path_len = strlen(path);
+            char full_path[MAX_LINE_LENGTH];
+            strncpy(full_path, path, path_len);
+            strncpy(full_path + path_len, args[0], MAX_LINE_LENGTH - path_len);
+            execve(full_path, args, NULL);
+            perror("execve failed");
             exit(1);
         }
         else {
