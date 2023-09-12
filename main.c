@@ -58,8 +58,8 @@ int main() {
         }
         else if (pid == 0) {
             // child process
-            execve(args[0], args, NULL);
-            perror("execve failed");
+            execvp(args[0], args);
+            perror("execvp failed");
             free(line);
             exit(1);
         }
