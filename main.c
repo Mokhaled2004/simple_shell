@@ -7,29 +7,31 @@
 #define MAX_LINE_LENGTH 80
 #define MAX_ARGS 10
 
+extern char **environ; // Declaration of the environ array
+
 // Function to print the current environment
 void print_environment() {
-    extern char **environ;
     for (int i = 0; environ[i] != NULL; i++) {
         printf("%s\n", environ[i]);
     }
 }
 
 int main() {
-    char line[MAX_LINE_LENGTH];
-    char* args[MAX_ARGS];
+    char *line = NULL;
+    size_t line_length = 0;
+    char *args[MAX_ARGS];
     int status;
 
     while (1) {
         printf("HOME$ ");
-        if (fgets(line, MAX_LINE_LENGTH, stdin) == NULL) {
+        ssize_t read = getline(&line, &line_length, stdin);
+        if (read == -1) {
             if (feof(stdin)) {
                 // Ctrl+D was pressed, exit the shell
                 printf("[Disconnected...]\n");
                 exit(0);
-            }
-            else {
-                perror("fgets failed");
+            } else {
+                perror("getline failed");
                 exit(1);
             }
         }
@@ -47,12 +49,10 @@ int main() {
         if (strcmp(args[0], "cd") == 0) {
             chdir(args[1]);
             continue;
-        }
-        else if (strcmp(args[0], "exit") == 0) {
-	    printf("[Disconnected...]\n");
-            exit(0);
-        }
-        else if (strcmp(args[0], "env") == 0) {
+        } else if (strcmp(args[0], "exit") == 0) {
+            	printf("[Disconnected...]\n");
+		exit(0);
+        } else if (strcmp(args[0], "env") == 0) {
             print_environment();
             continue;
         }
@@ -62,23 +62,21 @@ int main() {
         if (pid < 0) {
             perror("fork failed");
             exit(1);
-        }
-        else if (pid == 0) {
+        } else if (pid == 0) {
             // child process
-            char* path = "/bin/";
-            size_t path_len = strlen(path);
-            char full_path[MAX_LINE_LENGTH];
-            strncpy(full_path, path, path_len);
-            strncpy(full_path + path_len, args[0], MAX_LINE_LENGTH - path_len);
-            execve(full_path, args, NULL);
+            execve(args[0], args, environ); // Use execve for command execution
+            // If execve fails, try adding the path prefix
+            char command_path[256];
+            snprintf(command_path, sizeof(command_path), "/usr/bin/%s", args[0]);
+            execve(command_path, args, environ);
             perror("execve failed");
             exit(1);
-        }
-        else {
+        } else {
             // parent process
             waitpid(pid, &status, 0);
         }
     }
 
+    free(line);
     return 0;
 }
