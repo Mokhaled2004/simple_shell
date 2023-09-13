@@ -50,7 +50,8 @@ int main() {
             chdir(args[1]);
             continue;
         } else if (strcmp(args[0], "exit") == 0) {
-            	printf("[Disconnected...]\n");
+            
+		printf("[Disconnected...]\n");
 		exit(0);
         } else if (strcmp(args[0], "env") == 0) {
             print_environment();
