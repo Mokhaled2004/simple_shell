@@ -68,8 +68,14 @@ int main() {
             }
             continue;
         } else if (strcmp(args[0], "exit") == 0) {
+<<<<<<< HEAD
             printf("[Disconnected...]\n");
             exit(0);
+=======
+            
+		printf("[Disconnected...]\n");
+		exit(0);
+>>>>>>> d279dc61012c124ba074bd8c7f4c96cecfbf9e5e
         } else if (strcmp(args[0], "env") == 0) {
             print_environment();
             continue;
