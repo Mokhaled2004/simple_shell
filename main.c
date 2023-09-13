@@ -7,13 +7,21 @@
 #define MAX_LINE_LENGTH 80
 #define MAX_ARGS 10
 
+// Function to print the current environment
+void print_environment() {
+    extern char **environ;
+    for (int i = 0; environ[i] != NULL; i++) {
+        printf("%s\n", environ[i]);
+    }
+}
+
 int main() {
     char line[MAX_LINE_LENGTH];
     char* args[MAX_ARGS];
     int status;
 
     while (1) {
-        printf("$ ");
+        printf("HOME$ ");
         if (fgets(line, MAX_LINE_LENGTH, stdin) == NULL) {
             if (feof(stdin)) {
                 // Ctrl+D was pressed, exit the shell
@@ -41,8 +49,12 @@ int main() {
             continue;
         }
         else if (strcmp(args[0], "exit") == 0) {
-            	 printf("[Disconnected...]\n");
-		exit(0);
+	    printf("[Disconnected...]\n");
+            exit(0);
+        }
+        else if (strcmp(args[0], "env") == 0) {
+            print_environment();
+            continue;
         }
 
         // create a child process and execute the command
