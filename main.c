@@ -82,8 +82,7 @@ int main() {
             exit(1);
         } else if (pid == 0) {
             // child process
-            execve(args[0], args, environ); // Use execve for command execution
-            // If execve fails, try adding the path prefix
+           
             char command_path[256];
             snprintf(command_path, sizeof(command_path), "/usr/bin/%s", args[0]);
             execve(command_path, args, environ);
