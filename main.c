@@ -16,11 +16,12 @@ printf("%s\n", environ[i]);
 }
 /**
  * change_directory - Print the environment variables
- * @directory: lol
 */
+
 void change_directory(char *directory)
 {
-char previous_directory[MAX_LINE_LENGTH];
+    char previous_directory[MAX_LINE_LENGTH];
+    previous_directory[0] = '\0';
 if (directory == NULL)
 {
 chdir(getenv("HOME"));
@@ -81,11 +82,11 @@ waitpid(pid, &status, 0);
 int main(void)
 {
 char *line = NULL, *args[MAX_ARGS];
-size_t line_length = 0;
+int line_length = 0, read, i;
 while (1)
 {
 printf("HOME$ ");
-ssize_t read = getline(&line, &line_length, stdin);
+read = _getline(&line, &line_length);
 if (read == -1)
 {
 if (feof(stdin))
@@ -99,7 +100,7 @@ perror("getline failed");
 exit(1);
 }
 }
-int i = 0;
+i = 0;
 args[i] = strtok(line, " \n");
 while (args[i] != NULL)
 {

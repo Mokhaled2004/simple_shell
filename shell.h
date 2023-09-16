@@ -16,7 +16,9 @@
 
 extern char **environ;
 
-void print_environment(char **environ);
-int getline(char **line, int *len);
+void print_environmentt(void);
+void change_directory(char *directory);
+void execute_command(char *command, char *args[]);
+int _getline(char **line, int *len);
 
 #endif

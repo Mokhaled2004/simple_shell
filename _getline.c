@@ -1,13 +1,30 @@
 #include "shell.h"
+#include <unistd.h>
 
-/**
- * getline - Read a line from standard input
- * @line: Pointer to the line buffer
- * @len: Pointer to the length counter
- *
- * Return: Length of the line
- */
-int getline(char **line, int *len)
+void *_realloc(void* ptr, size_t old_size, size_t new_size) {
+    void *new_ptr = malloc(new_size);
+    	if (new_size == 0) {
+        free(ptr);
+        return NULL;
+    }
+
+    if (new_ptr == NULL) {
+        return NULL;
+    }
+
+    if (ptr != NULL) {
+        size_t copy_size = old_size;
+        if (copy_size > new_size) {
+            copy_size = new_size;
+        }
+        memcpy(new_ptr, ptr, copy_size);
+
+        free(ptr);
+    }
+
+    return new_ptr;
+}
+int _getline(char **line, int *len)
 {
 	char buffer[1024];
 	int buffer_index = 0;
