@@ -12,10 +12,11 @@
 #define MAX_LINES 100
 #define MAX_LINE_LENGTH 80
 #define MAX_ARGV 10
+#define MAX_ARGS 10
 
 extern char **environ;
 
 void print_environment(char **environ);
-ssize_t getline(char *buf, size_t *len);
+int getline(char **line, int *len);
 
 #endif
