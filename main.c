@@ -1,8 +1,5 @@
 #include "shell.h"
 
-void print_environmentt(void);
-void change_directory(char *directory);
-void execute_command(char *command, char *args[]);
 /**
  * print_environmentt - Print the environment variables
 */
