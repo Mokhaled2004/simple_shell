@@ -1,9 +1,9 @@
 #include "shell.h"
 
 /**
- * print_environmentt - Print the environment variables
-*/
-void print_environmentt(void)
+ * print_environment - Print the environment variables
+ */
+void print_environment(void)
 {
 int i;
 for (i = 0; environ[i] != NULL; i++)
@@ -11,14 +11,14 @@ for (i = 0; environ[i] != NULL; i++)
 printf("%s\n", environ[i]);
 }
 }
+
 /**
- * change_directory - Print the environment variables
- * @directory: lol
-*/
-void change_directory(char *directory)
+ * change_directory - Change the current working directory
+ * @directory: The directory to change to
+ * @previous_directory: Reference to the previous directory
+ */
+void change_directory(char *directory, char *previous_directory)
 {
-char previous_directory[MAX_LINE_LENGTH];
-previous_directory[0] = '\0';
 if (directory == NULL)
 {
 chdir(getenv("HOME"));
@@ -39,16 +39,17 @@ printf("No previous directory available.\n");
 }
 else
 {
-getcwd(previous_directory, sizeof(previous_directory));
+getcwd(previous_directory, MAX_LINE_LENGTH);
 chdir(directory);
 }
 }
 }
+
 /**
- * execute_command - Print the environment variables
- * @command: lol
- * @args: lol
-*/
+ * execute_command - Execute the given command
+ * @command: The command to execute
+ * @args: The arguments for the command
+ */
 void execute_command(char *command, char *args[])
 {
 pid_t pid = fork();
@@ -71,6 +72,7 @@ else
 waitpid(pid, &status, 0);
 }
 }
+
 /**
  * main - Simple shell program
  *
@@ -78,54 +80,42 @@ waitpid(pid, &status, 0);
  */
 int main(void)
 {
-char *line = NULL, *args[MAX_ARGS];
+char *line = NULL, *args[MAX_ARGS], previous_directory[MAX_LINE_LENGTH];
 size_t line_length = 0;
 ssize_t read;
 int i;
+previous_directory[0] = '\0';
 
-while (1)
+while (printf("HOME$ "), (read = getline(&line, &line_length, stdin)) != -1)
 {
-printf("HOME$ ");
-read = getline(&line, &line_length, stdin);
-if (read == -1)
+i = 0;
+args[i] = strtok(line, " \n");
+while (args[i])
+args[++i] = strtok(NULL, " \n");
+if (!args[0])
+continue;
+if (strcmp(args[0], "cd") == 0)
 {
+change_directory(args[1], previous_directory);
+continue;
+}
+if (strcmp(args[0], "exit") == 0)
+{
+printf("[Disconnected...]\n");
+exit(0);
+}
+if (strcmp(args[0], "env") == 0)
+{
+print_environment();
+continue;
+}
+execute_command(args[0], args);
+}
 if (feof(stdin))
 {
 printf("[Disconnected...]\n");
 exit(0);
 }
-else
-{
 perror("getline failed");
 exit(1);
-}
-}
-
-i = 0;
-args[i] = strtok(line, " \n");
-while (args[i] != NULL)
-{
-i++;
-args[i] = strtok(NULL, " \n");
-}
-args[i] = NULL;
-if (strcmp(args[0], "cd") == 0)
-{
-change_directory(args[1]);
-continue;
-}
-else if (strcmp(args[0], "exit") == 0)
-{
-printf("[Disconnected...]\n");
-exit(0);
-}
-else if (strcmp(args[0], "env") == 0)
-{
-print_environmentt();
-continue;
-}
-execute_command(args[0], args);
-}
-free(line);
-return (0);
 }
