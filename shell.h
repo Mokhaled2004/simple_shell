@@ -20,5 +20,6 @@ void print_environmentt(void);
 void change_directory(char *directory, char *previous_directory);
 void execute_command(char *command, char *args[]);
 int _getline(char **line, int *len);
+void *_realloc(void *ptr, size_t old_size, size_t new_size);
 
 #endif
