@@ -13,6 +13,7 @@
 #define MAX_LINE_LENGTH 80
 #define MAX_ARGV 10
 #define MAX_ARGS 10
+#define BUFFER_SIZE 1024
 
 extern char **environ;
 
