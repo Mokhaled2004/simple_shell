@@ -26,7 +26,7 @@ chdir(getenv("HOME"));
 }
 else
 {
-if (strcmp(directory, "-") == 0)
+if (_strcmp(directory, "-") == 0)
 {
 if (previous_directory[0] != '\0')
 {
@@ -96,17 +96,17 @@ while (args[i])
 args[++i] = strtok(NULL, " \n");
 if (!args[0])
 continue;
-if (strcmp(args[0], "cd") == 0)
+if (_strcmp(args[0], "cd") == 0)
 {
 change_directory(args[1], previous_directory);
 continue;
 }
-if (strcmp(args[0], "exit") == 0)
+if (_strcmp(args[0], "exit") == 0)
 {
 _printf("[Disconnected...]\n");
 exit(0);
 }
-if (strcmp(args[0], "env") == 0)
+if (_strcmp(args[0], "env") == 0)
 {
 print_environment();
 continue;

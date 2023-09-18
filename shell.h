@@ -24,4 +24,5 @@ void *_realloc(void *ptr, size_t old_size, size_t new_size);
 int _getline(char **line, size_t *line_length, FILE *input_stream);
 void _printf(char *str);
 int _putchar(char c);
+int _strcmp(char *s1, char *s2);
 #endif
