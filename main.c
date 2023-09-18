@@ -64,7 +64,7 @@ exit(1);
 else if (pid == 0)
 {
 char command_path[256];
-snprintf(command_path, sizeof(command_path), "/usr/bin/%s", command);
+_snprintf(command_path, sizeof(command_path), "/usr/bin/", command);
 execve(command_path, args, environ);
 perror("execve failed");
 exit(1);

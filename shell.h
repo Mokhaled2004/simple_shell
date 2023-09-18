@@ -25,4 +25,6 @@ int _getline(char **line, size_t *line_length, FILE *input_stream);
 void _printf(char *str);
 int _putchar(char c);
 int _strcmp(char *s1, char *s2);
+int _snprintf(char *str, size_t size, char *str1, char *str2);
+size_t _strlen(const char *str);
 #endif
