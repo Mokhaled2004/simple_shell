@@ -8,7 +8,8 @@ void print_environment(void)
 int i;
 for (i = 0; environ[i] != NULL; i++)
 {
-printf("%s\n", environ[i]);
+_printf(environ[i]);
+_putchar('\n');
 }
 }
 
@@ -29,12 +30,13 @@ if (strcmp(directory, "-") == 0)
 {
 if (previous_directory[0] != '\0')
 {
-printf("%s\n", previous_directory);
+_printf(previous_directory);
+_putchar('\n');
 chdir(previous_directory);
 }
 else
 {
-printf("No previous directory available.\n");
+_printf("No previous directory available.\n");
 }
 }
 else
@@ -86,7 +88,7 @@ ssize_t read;
 int i;
 previous_directory[0] = '\0';
 
-while (printf("HOME$ "), (read = getline(&line, &line_length, stdin)) != -1)
+while (_printf("HOME$ "), (read = getline(&line, &line_length, stdin)) != -1)
 {
 i = 0;
 args[i] = strtok(line, " \n");
@@ -101,7 +103,7 @@ continue;
 }
 if (strcmp(args[0], "exit") == 0)
 {
-printf("[Disconnected...]\n");
+_printf("[Disconnected...]\n");
 exit(0);
 }
 if (strcmp(args[0], "env") == 0)
@@ -113,7 +115,7 @@ execute_command(args[0], args);
 }
 if (feof(stdin))
 {
-printf("[Disconnected...]\n");
+_printf("[Disconnected...]\n");
 exit(0);
 }
 perror("getline failed");
