@@ -1,43 +1,29 @@
 #include "shell.h"
-#include <unistd.h>
+#include <stdio.h>
+
 /**
- * _getline - lol
- * @line: loll
- * @len: loolo
- * Return: lol
-*/
-int _getline(char **line, int *len)
+ * _getline - Read a line from the input stream
+ * @line: Pointer to the line buffer
+ * @line_length: Pointer to the length of the line
+ * @input_stream: The input stream to read from
+ *
+ * Return: Number of characters read, or -1 on failure
+ */
+int _getline(char **line, size_t *line_length, FILE *input_stream)
 {
-char buffer[1024];
-int buffer_index = 0;
-int buffer_size = 0;
-char c;
+    char *buffer = NULL;
+    ssize_t read;
 
-if (line == NULL)
-return (-1);
-while (1)
-{
-if (buffer_index >= buffer_size)
-{
-buffer_size = read(STDIN_FILENO, buffer, 1024);
-buffer_index = 0;
-if (buffer_size <= 0)
-{
-break;
-}
-}
-c = buffer[buffer_index++];
+    if (line == NULL || line_length == NULL || input_stream == NULL)
+        return -1;
 
-if (c == '\n')
-{
-(*line)[*len] = '\0';
-break;
-}
-else
-{
-*line = _realloc(*line, (*len) * sizeof(char), (*len + 1) * sizeof(char));
-(*line)[(*len)++] = c;
-}
-}
-return (*len);
+    read = getline(&buffer, line_length, input_stream);
+    if (read == -1)
+    {
+        free(buffer);
+        return -1;
+    }
+
+    *line = buffer;
+    return read;
 }
