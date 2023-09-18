@@ -88,7 +88,7 @@ ssize_t read;
 int i;
 previous_directory[0] = '\0';
 
-while (_printf("HOME$ "), (read = getline(&line, &line_length, stdin)) != -1)
+while (_printf("HOME$ "), (read = _getline(&line, &line_length, stdin)) != -1)
 {
 i = 0;
 args[i] = strtok(line, " \n");
