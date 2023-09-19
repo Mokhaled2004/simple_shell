@@ -113,7 +113,7 @@ continue;
 }
 execute_command(args[0], args);
 }
-if (feof(stdin))
+if (read == -1)
 {
 _printf("[Disconnected...]\n");
 exit(0);
