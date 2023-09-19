@@ -118,17 +118,8 @@ int main(void)
             continue;
         if (_strcmp(args[0], "cd") == 0)
         {
-<<<<<<< HEAD
             change_directory(args[1], previous_directory);
             continue;
-=======
-            if (args[1] != NULL)
-            {
-                exit_status = _atoi(args[1]); 
-            }
-            _printf("[Disconnected...]\n");
-            exit(exit_status);  
->>>>>>> 439a290bbccc036d8d774a24e0dd6f19628e97a4
         }
         if (_strcmp(args[0], "exit") == 0)
         {
