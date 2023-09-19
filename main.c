@@ -52,7 +52,7 @@ chdir(directory);
  * @command: The command to execute
  * @args: The arguments for the command
  */
-void execute_command(char *command, char *args[])
+void execute_command(char __attribute__((unused)) *command, char *args[])
 {
 pid_t pid = fork();
 int status;
@@ -64,7 +64,7 @@ exit(1);
 else if (pid == 0)
 {
 char command_path[256];
-_snprintf(command_path, sizeof(command_path), "/usr/bin/", command);
+_snprintf(command_path, 256, "/usr/bin/", args[0]);
 execve(command_path, args, environ);
 perror("execve failed");
 exit(1);
@@ -88,7 +88,7 @@ ssize_t read;
 int i;
 previous_directory[0] = '\0';
 
-while (_printf("HOME$ "), (read = _getline(&line, &line_length, stdin)) != -1)
+while (_printf("HOME$ "), (read = getline(&line, &line_length, stdin)) != -1)
 {
 i = 0;
 args[i] = strtok(line, " \n");
