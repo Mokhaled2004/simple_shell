@@ -27,4 +27,5 @@ int _putchar(char c);
 int _strcmp(char *s1, char *s2);
 int _snprintf(char *str, size_t size, char *str1, char *str2);
 size_t _strlen(const char *str);
+int _atoi(char *s);
 #endif
