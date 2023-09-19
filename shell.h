@@ -19,7 +19,7 @@ extern char **environ;
 
 void print_environmentt(void);
 void change_directory(char *directory, char *previous_directory);
-void execute_command(char *command, char *args[]);
+void execute_command(char *command, char *args[], int *exit_status);
 void *_realloc(void *ptr, size_t old_size, size_t new_size);
 ssize_t _getline(char **line, size_t *line_length, FILE *stream);
 void _printf(char *str);

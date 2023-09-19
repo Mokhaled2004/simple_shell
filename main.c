@@ -52,10 +52,19 @@ chdir(directory);
  * @command: The command to execute
  * @args: The arguments for the command
  */
-void execute_command(char __attribute__((unused)) *command, char *args[])
+void execute_command(char __attribute__((unused)) *command, char *args[], int *exit_status)
 {
 pid_t pid = fork();
 int status;
+if (_strcmp(command, "exit") == 0)
+{
+        if (args[1] != NULL)
+        {
+            *exit_status = atoi(args[1]);  
+        }
+        _printf("[Disconnected...]\n");
+        exit(*exit_status);
+    }
 if (pid < 0)
 {
 perror("fork failed");
@@ -85,7 +94,7 @@ int main(void)
 char *line = NULL, *args[MAX_ARGS], previous_directory[MAX_LINE_LENGTH];
 size_t line_length = 0;
 ssize_t read;
-int i;
+int i, exit_status = 0;
 previous_directory[0] = '\0';
 
 while (_printf("HOME$ "), (read = getline(&line, &line_length, stdin)) != -1)
@@ -102,16 +111,20 @@ change_directory(args[1], previous_directory);
 continue;
 }
 if (_strcmp(args[0], "exit") == 0)
-{
-_printf("[Disconnected...]\n");
-exit(0);
-}
+        {
+            if (args[1] != NULL)
+            {
+                exit_status = atoi(args[1]); 
+            }
+            _printf("[Disconnected...]\n");
+            exit(exit_status);  
+        }
 if (_strcmp(args[0], "env") == 0)
 {
 print_environment();
 continue;
 }
-execute_command(args[0], args);
+execute_command(args[0], args, &exit_status);
 }
 if (read == -1)
 {
