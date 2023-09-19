@@ -2,7 +2,6 @@
 
 /**
  *_snprintf - It is typically used to write formatted data to a string
-buffer instead of printing it to the standard output.
  * @str: buffer
  * @size: size_t
  * @str1: arguments to be added to append to the buffer
