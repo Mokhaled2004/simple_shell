@@ -24,7 +24,7 @@ char **argss = NULL;
 int proccess_counters = 1;
 char *strings = NULL;
 size_t string_sizes = 0;
-char **pathss = get_all_paths();
+char **pathss = _getallpaths();
 
 signal(SIGINT, catch_signal);
 
@@ -36,7 +36,7 @@ write(STDOUT_FILENO, "m$ ", 3);
 while ((_getline(&strings, &string_sizes)))
 {
 /* split arguments && execution the commands*/
-sh(strings, argss, pathss, proccess_counters, program_paths, &statuss);
+sh(strings, argss, pathss, proccess_counters, program_path, &statuss);
 proccess_counters++;
 fflush(stdout);
 /*check non interactive mood*/
@@ -47,7 +47,7 @@ write(STDOUT_FILENO, "m$ ", 3);
 /*the only way you can arrive here with EOF = -1*/
 if (isatty(STDIN_FILENO) != 0)
 write(STDOUT_FILENO, "\n", 1);
-free_all(argss, strings, pathss);
+_all(argss, strings, pathss);
 _array_of_pointers(environ);
 return (statuss);
 }
