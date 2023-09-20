@@ -1,11 +1,11 @@
 #include "shell.h"
 /**
-* _freeall - free all memory from arguments & string & paths
+* _all - free all memory from arguments & string & paths
 * @string: input string to shell
 * @arguments: splitted string acc to breaks
 * @paths: splitted path from environment
 */
-void _freeall(char **arguments, char *string, char **paths)
+void _all(char **arguments, char *string, char **paths)
 {
 free(string);
 free(arguments);

@@ -14,11 +14,11 @@ num = n % 10 + '0';
 write(STDERR_FILENO, &num, 1);
 }
 /**
-* _checkpositive - function to check positive numbers
+* _positive - function to check positive numbers
 *@str: string to check if have number
 * Return: zero if positive number
 */
-int _checkpositive(char *str)
+int _postive(char *str)
 {
 int i = 0;
 while (str && *str)
