@@ -22,10 +22,10 @@ return (NULL);
 }
 
 /**
-* get_all_paths - split the found path into paths
+* _getallpaths - split the found path into paths
 * Return: splitted paths (allocated in memory)
 */
-char **get_all_paths(void)
+char **_getallpaths(void)
 {
 char *path = _getenv("PATH");
 char *pathcp = _strcp(path);
