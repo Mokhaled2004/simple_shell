@@ -61,7 +61,7 @@ return (EXIT_FAILURE);
 }
 }
 opwd = _getenv("PWD");
-set_env("OLDPWD", opwd);
+_setenv("OLDPWD", opwd);
 if (chdir(arguments[1]) != 0)
 {
 perror("cd");
@@ -73,7 +73,7 @@ else
 pwd = getcwd(NULL, 0);
 if (pwd != NULL)
 {
-set_env("PWD", pwd);
+_setenv("PWD", pwd);
 free(pwd);
 return (EXIT_SUCCESS);
 }

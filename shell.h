@@ -72,5 +72,5 @@ void execve_error(char *msg, char *command, int count, char *p_path);
 /*number helper functions*/
 void _num(unsigned int n);
 int _postive(char *str);
-int set_env(char *key, char *value);
+int _setenv(char *key, char *value);
 #endif
