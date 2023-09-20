@@ -1,10 +1,10 @@
 #include "shell.h"
 /**
-* _printenv - print the environments
+* _env - print the environments
 * @arguments: splitted string acc to breaks
 * Return: EXIT_SUCCESS = 0
 */
-int _printenv(__attribute__((unused)) char **arguments)
+int _env(__attribute__((unused)) char **arguments)
 {
 int len;
 char **tempo = environ;
