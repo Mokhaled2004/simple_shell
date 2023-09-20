@@ -56,7 +56,7 @@ return (_strcp);
 }
 
 /**
- * _strconcat - add str2 command to str1 path
+ * _strccat - add str2 command to str1 path
  * @str1: first string
  * @str2: second string
  * Return: str1 after addition

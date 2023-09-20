@@ -9,7 +9,7 @@
 int main(__attribute__((unused)) int argc, char **argv)
 {
 int status = 0;
-environ = *_strings(environ);
+environ = _strings(environ);
 status = infinite_loop(argv[0]);
 return (status);
 }
