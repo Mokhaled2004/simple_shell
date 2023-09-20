@@ -15,7 +15,7 @@ extern char **environ;
 
 
 int infinite_loop(char *program_path);
-i
+
 /* and split arguments && execution the commands*/
 void sh(char *str, char **args, char **paths, int p_cnt, char *p_path,
 int *st);
