@@ -21,7 +21,7 @@ free(temps);
  * @str: array of strings
  * Return: allocated new copy array
  */
-char **_strings(char **str)
+char **copy_strings(char **str)
 {
 char **news_array = NULL;
 int i = 0;
