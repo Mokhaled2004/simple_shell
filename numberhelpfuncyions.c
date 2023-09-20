@@ -14,7 +14,7 @@ num = n % 10 + '0';
 write(STDERR_FILENO, &num, 1);
 }
 /**
-* _positive - function to check positive numbers
+* _postive - function to check positive numbers
 *@str: string to check if have number
 * Return: zero if positive number
 */

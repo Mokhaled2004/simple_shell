@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
-* _checkexit - check that argument[0] = exit
+* h_exit - check that argument[0] = exit
 * exit with argument[1] if exists
 * @str: input string to shell
 * @args: splitted string acc to breaks

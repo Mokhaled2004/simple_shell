@@ -17,7 +17,7 @@ free(temps);
 }
 
 /**
- * *_strings - hard copy
+ * copy_strings - hard copy
  * @str: array of strings
  * Return: allocated new copy array
  */
