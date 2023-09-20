@@ -12,7 +12,7 @@
 * Return: zero if found exit but not true
 * one if not found
 */
-int _checkexit(char **args, char *str, char **paths, int *st, char *pth, int p)
+int h_exit(char **args, char *str, char **paths, int *st, char *pth, int p)
 {
 char *msg = NULL;
 int arg1_result;
