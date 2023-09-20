@@ -66,7 +66,7 @@ new_arrays[i] = _strcp(str[i]);
 if (!new_arrays[i])
 {
 perror("Memory allocation failed");
-_array_of_pointers(new_array);
+_array_of_pointers(new_arrays);
 exit(EXIT_FAILURE);
 }
 }
