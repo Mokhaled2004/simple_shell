@@ -1,9 +1,9 @@
 #include "shell.h"
 /**
-* _printnum - recursive function to print a number
+* _num - recursive function to print a number
 *@n: number to print
 */
-void _printnum(unsigned int n)
+void _num(unsigned int n)
 {
 char num;
 
