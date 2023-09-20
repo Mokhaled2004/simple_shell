@@ -15,10 +15,10 @@ extern char **environ;
 
 
 int infinite_loop(char *program_path);
-
+i
 /* and split arguments && execution the commands*/
 void sh(char *str, char **args, char **paths, int p_cnt, char *p_path,
-        int *st);
+int *st);
 
 /* checker helper functions*/
 int _full_path(char *argument);
@@ -55,7 +55,7 @@ void _idx_from_array(int idx, char **array);
 
 /* built in checker */
 int h_exit(char **args, char *str, char **paths, int *st,
-               char *pth, int p);
+char *pth, int p);
 int _builtin(char **arguments);
 
 /* built in functions*/
