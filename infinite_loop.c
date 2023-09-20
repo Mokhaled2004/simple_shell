@@ -30,7 +30,7 @@ signal(SIGINT, catch_signal);
 
 /*print prompt if user run the program*/
 if (isatty(STDIN_FILENO) != 0)
-write(STDOUT_FILENO, "m$ ", 3);
+write(STDOUT_FILENO, "$ ", 3);
 /* if not or get the command from pipe*/
 /*it will start execute the command*/
 while ((_getline(&strings, &string_sizes)))
