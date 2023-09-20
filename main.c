@@ -1,9 +1,9 @@
 #include "shell.h"
 
 /**
- * print_environment - Print the environment variables
+ * print_environmentt - Print the environment variables
  */
-void print_environment(void)
+void print_environmentt(void)
 {
 int i;
 for (i = 0; environ[i] != NULL; i++)
@@ -128,7 +128,7 @@ _exitt(args, &exit_status);
 }
 if (_strcmp(args[0], "env") == 0)
 {
-print_environment();
+print_environmentt();
 continue;
 }
 execute_command(args[0], args, &exit_status);
