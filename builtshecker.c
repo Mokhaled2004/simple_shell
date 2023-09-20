@@ -44,12 +44,12 @@ return (1);
 }
 
 /**
-* _checkbuiltin - check the builtin environments
+* _builtin - check the builtin environments
 * @arguments: splitted string acc to breaks
 * Return: -1 if not builtin else return builtin function
 */
 
-int _checkbuiltin(char **arguments)
+int _builtin(char **arguments)
 {
 
 char *builtin_str[] = {"env", "setenv", "unsetenv", "cd"};
