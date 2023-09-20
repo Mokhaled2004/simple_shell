@@ -25,7 +25,7 @@ return;
 args = split(str, breaks);
 if (args[0] == NULL)
 {
-free_all(args, str, NULL);
+_all(args, str, NULL);
 *st = 0;
 return;
 }
@@ -39,5 +39,5 @@ _before_exec(args, paths, p_cnt, p_path, st);
 }
 }
 
-free_all(args, str, NULL);
+_all(args, str, NULL);
 }
