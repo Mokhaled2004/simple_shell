@@ -30,7 +30,7 @@ char **get_all_paths(void)
 char *path = _getenv("PATH");
 char *pathcp = _strcp(path);
 char **splitted_paths = split(pathcp, ":");
-char **copy_splitted_paths = _strings(splitted_paths);
+char **copy_splitted_paths = copy_strings(splitted_paths);
 
 free(pathcp);
 free(splitted_paths);
