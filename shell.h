@@ -42,6 +42,7 @@ void _before_exec(char **args, char **paths, int p_cnt, char *p_path, int *st);
 void _execution(char **arguments, int *st);
 
 char **_strings(char **str);
+
 void _array_of_pointers(char **array);
 void _idx_from_array(int idx, char **array);
 
