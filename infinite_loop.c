@@ -41,7 +41,7 @@ proccess_counters++;
 fflush(stdout);
 /*check non interactive mood*/
 if (isatty(STDIN_FILENO) != 0)
-write(STDOUT_FILENO, "m$ ", 3);
+write(STDOUT_FILENO, "$ ", 3);
 }
 /*check EOF*/
 /*the only way you can arrive here with EOF = -1*/
