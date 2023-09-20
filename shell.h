@@ -41,11 +41,11 @@ char *_getenv(char *string);
 void _before_exec(char **args, char **paths, int p_cnt, char *p_path, int *st);
 void _execution(char **arguments, int *st);
 
-char ***_strings(char **str);
+char **_strings(char **str);
 void _array_of_pointers(char **array);
 void _idx_from_array(int idx, char **array);
 
-int _exit(char **args, char *str, char **paths, int *st, char *pth, int p);
+int h_exit(char **args, char *str, char **paths, int *st, char *pth, int p);
 int _builtin(char **arguments);
 
 int _variable(char **arguments);
@@ -59,5 +59,5 @@ void execve_error(char *msg, char *command, int count, char *p_path);
 /*number helper functions*/
 void _num(unsigned int n);
 int _postive(char *str);
-
+int set_env(char *key, char *value);
 #endif
